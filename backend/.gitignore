@@ -1,0 +1,24 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment variables — NEVER upload these!
+.env
+*.env
+
+# PDFs — don't upload curriculum files
+backend/data/*.pdf
+
+# FAISS vector store — too large
+backend/vector_store_data/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+desktop.ini
+
+frontend/
