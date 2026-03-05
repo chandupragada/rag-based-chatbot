@@ -81,3 +81,5 @@ This project runs on **free tier APIs only**:
 | Gemini (embeddings) | Used only during ingestion |
 | FAISS, FastAPI, etc. | 100% free forever |
 
+
+
