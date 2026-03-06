@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rowan MSCS Academic Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  
+  <header>
+    <div class="header-left">
+      
+      <div class="owl-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="48" height="48">
+          <!-- Body -->
+          <ellipse cx="50" cy="62" rx="26" ry="30" fill="#8B1A1A"/>
+          <!-- Head -->
+          <circle cx="50" cy="34" r="22" fill="#8B1A1A"/>
+          <!-- Ear tufts -->
+          <polygon points="35,16 30,4 40,14" fill="#8B1A1A"/>
+          <polygon points="65,16 70,4 60,14" fill="#8B1A1A"/>
+          <!-- Face patch -->
+          <ellipse cx="50" cy="36" rx="16" ry="14" fill="#F5E6C8"/>
+          <!-- Left eye -->
+          <circle cx="43" cy="32" r="7" fill="white"/>
+          <circle cx="43" cy="32" r="5" fill="#FFD700"/>
+          <circle cx="43" cy="32" r="3" fill="#1a1a1a"/>
+          <circle cx="44.5" cy="30.5" r="1" fill="white"/>
+          <!-- Right eye -->
+          <circle cx="57" cy="32" r="7" fill="white"/>
+          <circle cx="57" cy="32" r="5" fill="#FFD700"/>
+          <circle cx="57" cy="32" r="3" fill="#1a1a1a"/>
+          <circle cx="58.5" cy="30.5" r="1" fill="white"/>
+          <!-- Beak -->
+          <polygon points="50,38 45,44 55,44" fill="#FFD700"/>
+          <!-- Chest pattern -->
+          <ellipse cx="50" cy="62" rx="14" ry="18" fill="#F5E6C8"/>
+          <!-- Wings -->
+          <ellipse cx="28" cy="65" rx="10" ry="18" fill="#6B1414" transform="rotate(-10 28 65)"/>
+          <ellipse cx="72" cy="65" rx="10" ry="18" fill="#6B1414" transform="rotate(10 72 65)"/>
+          <!-- Feet -->
+          <line x1="42" y1="90" x2="38" y2="98" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="42" y1="90" x2="42" y2="99" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="42" y1="90" x2="46" y2="98" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="58" y1="90" x2="54" y2="98" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="58" y1="90" x2="58" y2="99" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="58" y1="90" x2="62" y2="98" stroke="#FFD700" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="header-title">
+        <h1>MSCS Academic Assistant</h1>
+        <p class="tagline">Rowan University · Your intelligent study companion</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <span class="status-label">Course Resources:</span>
+      <div id="files-list">
+        <span class="loading-files">Connecting...</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CHAT AREA -->
+  <main>
+    <div id="chat-box">
+
+      <!-- Welcome message -->
+      <div class="message bot-message">
+        <div class="avatar">🦉</div>
+        <div class="bubble">
+          <p>👋 Hi! I'm your MSCS Academic Assistant at Rowan University.</p>
+          <p>Ask me anything about your course materials and I'll answer with exact page references from your curriculum!</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  
+  <footer>
+    <div class="top-input-bar">
+      <button id="clear-btn" onclick="clearChat()">🗑️ Clear Chat</button>
+    </div>
+    <div class="input-area">
+      <textarea
+        id="question-input"
+        placeholder="Ask a question about your curriculum..."
+        rows="1"
+      ></textarea>
+      <button id="send-btn" onclick="sendQuestion()">
+        Send ➤
+      </button>
+    </div>
+    <p class="hint">Press Enter to send · Shift+Enter for new line</p>
+  </footer>
+
+  <script src="app.js"></script>
+
+</body>
+</html>

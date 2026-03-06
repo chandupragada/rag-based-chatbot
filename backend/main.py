@@ -57,7 +57,6 @@ class Source(BaseModel):
 class ChatResponse(BaseModel):
     answer: str
     sources: list[Source]
-
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: ChatRequest):
     if vector_store.total_chunks == 0:
@@ -68,16 +67,39 @@ async def chat(request: ChatRequest):
 
     if not request.question.strip():
         raise HTTPException(400, "Please type a question!")
-    results = retriever.retrieve(request.question)
-    context = retriever.format_context(results)
-    try:
-        answer = generator.generate(request.question, context)
-    except Exception as e:
-        if "quota" in str(e).lower() or "rate" in str(e).lower():
-            raise HTTPException(429, "Too many requests! Please wait 1 minute and try again.")
-        raise HTTPException(500, f"Error generating answer: {str(e)}")
+    greetings = [
+        "hi", "hello", "hey", "good morning", "good afternoon",
+        "good evening", "howdy", "sup", "hiya", "greetings",
+        "hi there", "hello there", "hey there"
+    ]
+    if request.question.strip().lower() in greetings:
+        return ChatResponse(
+            answer="Hello! 👋 I'm your MSCS Academic Assistant at Rowan University. Ask me anything about your curriculum or general CS topics and I'll do my best to help!",
+            sources=[]
+        )
 
-    
+    thanks = ["thanks", "thank you", "thankyou", "ty", "thx"]
+    if request.question.strip().lower() in thanks:
+        return ChatResponse(
+            answer="You're welcome! 😊 Feel free to ask anything else about your MSCS curriculum!",
+            sources=[]
+        )
+    goodbyes = ["bye", "goodbye", "see you", "cya", "take care"]
+    if request.question.strip().lower() in goodbyes:
+        return ChatResponse(
+            answer="Goodbye! 👋 Good luck with your studies. Come back anytime you have questions!",
+            sources=[]
+        )
+    results = retriever.retrieve(request.question)
+    no_context = len(results) == 0
+    context = retriever.format_context(results)
+
+    answer = generator.generate(
+        request.question,
+        context,
+        no_context=no_context
+    )
+
     sources = [
         Source(
             file=r["chunk"].source_file,
@@ -89,6 +111,7 @@ async def chat(request: ChatRequest):
     ]
 
     return ChatResponse(answer=answer, sources=sources)
+
 
 @app.get("/status")
 async def status():
